@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974783195707",
+    "project_id": "usermechanic-5c1e4",
+    "storage_bucket": "usermechanic-5c1e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974783195707:android:07c8678d3d8c4e40414a1e",
+        "android_client_info": {
+          "package_name": "com.usermechanic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5_KudZrVQ9PscZdP-itDOGCF0S0qh9-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
