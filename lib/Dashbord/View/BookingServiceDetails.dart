@@ -7,12 +7,11 @@ import 'package:photo_view/photo_view.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:usermechanic/AppConstant/APIConstant.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
-import 'package:usermechanic/Widget/EditTextWidget.dart';
-import 'package:usermechanic/Widget/PhotoViews.dart';
 import 'package:usermechanic/Widget/TextStyle.dart';
 import 'package:usermechanic/Widget/coustom_Dailog.dart';
 import 'package:usermechanic/Widget/styles.dart';
 import 'package:usermechanic/mathod/AppConstant.dart';
+
 class BookingServiceDetails extends StatefulWidget {
   final String id;
   const BookingServiceDetails(this.id, {Key? key}) : super(key: key);
@@ -45,7 +44,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
           builder: (BuildContext context) {
             return AlertDialog(
               title:Center(child: Text("Payment Details",style: bodyText1Style.copyWith(fontSize: 22.sp ,color: Colors.black,decoration: TextDecoration.none),)),
-              content: Container(
+              content: SizedBox(
                 height: 200.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +59,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                       ],
                     ),
                     SizedBox(height: 10.h,),
-                    Container(
+                    SizedBox(
                       height:100.h,
                       width:Get.width,
                       child: TextFormField(
@@ -103,9 +102,9 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                               elevation: 5.0,
                               minWidth: 100.w,
                               height: 40.h,
-                              color: Color(0xFF25A48B),
+                              color: const Color(0xFF25A48B),
                               child: Text('Pay Now',
-                                  style: new TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
+                                  style: TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
                               onPressed: () {
                                controller.TransactionBookingApi(controller.bookingservicedetails.value.data!.id.toString(),
                                    controller.bookingservicedetails.value.data!.adminMasterId.toString(),
@@ -125,7 +124,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                Navigator.of(context).pop();
                               },
                             ),
-                            Spacer(),
+                            const Spacer(),
                             MaterialButton(
                               shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
                               elevation: 5.0,
@@ -133,7 +132,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                               height: 40.h,
                               color: const Color(0xFFC90032),
                               child: Text('Cancel',
-                                  style: new TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
+                                  style: TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
                               onPressed: () {
                                 Navigator.of(context).pop(); // Close the dialog
                               },
@@ -153,7 +152,6 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
   }
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print("Payment Done");
-    var transection_Id='${response.paymentId}';
     if(response !="PaymentSuccessResponse"){
     }else{
 
@@ -189,7 +187,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title:Center(child: Text("Payment Details",style: bodyText1Style.copyWith(fontSize: 22.sp ,color: Colors.black,decoration: TextDecoration.none),)),
-                      content: Container(
+                      content: SizedBox(
                         height: 200.h,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -204,7 +202,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                               ],
                             ),
                             SizedBox(height: 10.h,),
-                            Container(
+                            SizedBox(
                               height:100.h,
                               width:Get.width,
                               child: TextFormField(
@@ -249,7 +247,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                       height: 40.h,
                                       color: Color(0xFF25A48B),
                                       child: Text('Pay Now',
-                                          style: new TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
+                                          style: TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
                                       onPressed: () {
                                         controller.TransactionBookingApi(controller.bookingservicedetails.value.data!.id.toString(),
                                             controller.bookingservicedetails.value.data!.adminMasterId.toString(),
@@ -277,7 +275,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                       height: 40.h,
                                       color: const Color(0xFFC90032),
                                       child: Text('Cancel',
-                                          style: new TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
+                                          style: TextStyle(fontSize: 14.sp, color: Colors.white,fontWeight: FontWeight.bold)),
                                       onPressed: () {
                                         Navigator.of(context).pop(); // Close the dialog
                                       },
@@ -329,7 +327,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width:100.w,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -345,19 +343,19 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                   ],
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: Get.width/2,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(":  "+controller.bookingservicedetails.value.data!.bookingNo.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":  ${controller.bookingservicedetails.value.data!.bookingNo}",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":  "+controller.bookingservicedetails.value.data!.username.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":  ${controller.bookingservicedetails.value.data!.username}",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":  "+controller.bookingservicedetails.value.data!.ownerName.toString()??"",style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":  ${controller.bookingservicedetails.value.data!.ownerName}",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":  "+controller.bookingservicedetails.value.data!.mobileNo.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":  ${controller.bookingservicedetails.value.data!.mobileNo}",style:bodybold3Style.copyWith(color: Colors.black),),
                                   ],
                                 ),
                               ),
@@ -379,7 +377,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width:100.w,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -397,21 +395,21 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                   ],
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: Get.width/2,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(":   "+controller.bookingservicedetails.value.data!.serviceType.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":   ${controller.bookingservicedetails.value.data!.serviceType}",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":   "+controller.bookingservicedetails.value.data!.serviceCharge.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":   ${controller.bookingservicedetails.value.data!.serviceCharge}",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":   "+Date2.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":   $Date2",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":   "+Date.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":   $Date",style:bodybold3Style.copyWith(color: Colors.black),),
                                     SizedBox(height: 5.h,),
-                                    Text(":   "+controller.bookingservicedetails.value.data!.modifyDate.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                    Text(":   ${controller.bookingservicedetails.value.data!.modifyDate}",style:bodybold3Style.copyWith(color: Colors.black),),
                                   ],
                                 ),
                               ),
@@ -426,7 +424,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text("Booking Address :",style:bodybold3Style.copyWith(color: Colors.black),),
-                            Container(
+                            SizedBox(
                               // padding: EdgeInsets.only(left: 4.w),
                               width: 220.w,
                               child: Column(
@@ -440,7 +438,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                       ),
                       Padding(
                         padding:  EdgeInsets.only(left: 14.w,right: 10.w,top: 8.h),
-                        child: Container(
+                        child: SizedBox(
                           width:Get.width,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -487,13 +485,13 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                               //     ],
                               //   ),
                               // ),
-                              Container(
+                              SizedBox(
                                 width:Get.width/2.2,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width:50.w,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -505,7 +503,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width:10.w,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -517,7 +515,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width:80.w,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -540,13 +538,13 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                   ],
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width:Get.width/2.2,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width:50.w,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -558,7 +556,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width:10.w,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -570,7 +568,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width:80.w,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -709,7 +707,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                       Column(
                         children: [
                           Table(
-                            columnWidths: {
+                            columnWidths: const {
                               0: FlexColumnWidth(3),
                               1: FlexColumnWidth(3),
                             },
@@ -746,7 +744,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                             return  Column(
                               children: [
                                 Table(
-                                  columnWidths: {
+                                  columnWidths: const {
                                     0: FlexColumnWidth(3),
                                     1: FlexColumnWidth(3),
                                   },
@@ -764,7 +762,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                         TableCell(
                                           child: Padding(
                                             padding:  EdgeInsets.only(top:5.h,bottom: 5.h),
-                                            child: Center(child: Text(data.amount.toString()+".00",textAlign:TextAlign.center,style: TextStyle(fontSize: 12.sp))),
+                                            child: Center(child: Text("${data.amount}.00",textAlign:TextAlign.center,style: TextStyle(fontSize: 12.sp))),
                                           ),
                                         ),
                                       ],
@@ -1070,10 +1068,8 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                   Column(
                   children: [
                   Table(
-                  columnWidths: {
+                  columnWidths: const {
                   0: FlexColumnWidth(2),
-                  1: FlexColumnWidth(1),
-                  1: FlexColumnWidth(1),
                   1: FlexColumnWidth(1),
                   },
                     border: TableBorder.all(width: .5),
@@ -1124,10 +1120,8 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                               Column(
                               children: [
                                 Table(
-                                  columnWidths: {
+                                  columnWidths: const {
                                     0: FlexColumnWidth(2),
-                                    1: FlexColumnWidth(1),
-                                    1: FlexColumnWidth(1),
                                     1: FlexColumnWidth(1),
                                   },
                                   border: TableBorder.all(width: .5),
@@ -1144,7 +1138,7 @@ class _BookingServiceDetailsState extends State<BookingServiceDetails> {
                                         TableCell(
                                           child: Padding(
                                             padding:  EdgeInsets.only(top:5.h,bottom: 5.h),
-                                            child: Center(child: Text(("Rs.")+data.amount.toString()+".0",textAlign:TextAlign.center,style: TextStyle(fontSize: 12.sp))),
+                                            child: Center(child: Text("Rs.${data.amount}.0",textAlign:TextAlign.center,style: TextStyle(fontSize: 12.sp))),
                                           ),
                                         ),
                                         TableCell(

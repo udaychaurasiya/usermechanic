@@ -11,11 +11,10 @@ import 'package:usermechanic/Dashbord/View/Profile/ContactUs.dart';
 import 'package:usermechanic/Dashbord/View/Profile/EditProfile.dart';
 import 'package:usermechanic/Dashbord/View/Profile/ProfileHelp.dart';
 import 'package:usermechanic/Dashbord/View/Profile/Transaction.dart';
-import 'package:usermechanic/Dashbord/View/Profile/location.dart';
 import 'package:usermechanic/Widget/coustom_Dailog.dart';
 import 'package:usermechanic/Widget/styles.dart';
-import 'package:usermechanic/auth/logincontroller.dart';
 import 'package:usermechanic/mathod/AppConstant.dart';
+
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
   @override
@@ -23,32 +22,32 @@ class Profile extends StatefulWidget {
 }
 class _ProfileState extends State<Profile> {
   final HomePageController controller=Get.find();
-   LoginController _controller=Get.put(LoginController());
-  GetStorage _storage=GetStorage();
   @override
   void initState() {
     super.initState();
     controller.postcurrentaddressNetworkApi();
   }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:SingleChildScrollView(
         child: FadeInUp(
-          delay: Duration(microseconds: 450),
+          delay: const Duration(microseconds: 450),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200.h,
                 child: Stack(
                   children: [
                     Container(
                       height: 180.h,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color(0xff049486),
                       ),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 35),
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
                         child: Column(
                           children: [
                             SizedBox(
@@ -59,7 +58,7 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  child: Column(
+                                  child: const Column(
                                     children: [
                                     ],
                                   ),
@@ -97,7 +96,7 @@ class _ProfileState extends State<Profile> {
                                   height:100.r,
                                   width: 100.r,
                                   placeholder: (context, url) =>
-                                      Center(child: const CircularProgressIndicator()),
+                                      const Center(child: CircularProgressIndicator()),
                                   errorWidget: (context, url, error) =>
                                       Icon(Icons.person,color: Colors.grey,size: 80.sp,),
                                 ),
@@ -135,89 +134,89 @@ class _ProfileState extends State<Profile> {
                      },
                      child: Row(
                        children: [
-                         Icon(Icons.home,color: Color(0xff049486),size: 23.r,),
+                         Icon(Icons.home,color: const Color(0xff049486),size: 23.r,),
                          SizedBox(width: 20.w,),
                          Text("Home",style: smallText1Style.copyWith(
-                           fontWeight: FontWeight.w500,color: Color(0xff626262),
+                           fontWeight: FontWeight.w500,color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
                      ),
                    ),
                    SizedBox(height: 5.h,),
-                   Divider(),
+                   const Divider(),
                    SizedBox(height: 5.h,),
                    InkWell(
                      onTap: (){
-                     Get.to(()=>EditProfile());
+                     Get.to(()=>const EditProfile());
                      },
                      child: Row(
                        children: [
-                         Icon(Icons.person,color: Color(0xff049486),size: 23.r,),
+                         Icon(Icons.person,color: const Color(0xff049486),size: 23.r,),
                          SizedBox(width: 20.w,),
                          Text("Profile",style: smallText1Style.copyWith(
-                           color: Color(0xff626262),
+                           color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
                      ),
                    ),
                    SizedBox(height: 5.h,),
-                   Divider(),
+                   const Divider(),
                    SizedBox(height: 5.h,),
                    InkWell(
                      onTap: (){
-                      Get.to(()=>ProfileHelp());
+                      Get.to(()=>const ProfileHelp());
                      },
                      child: Row(
                        children: [
-                         Icon(Icons.help,color: Color(0xff049486),size: 23.r,),
+                         Icon(Icons.help,color: const Color(0xff049486),size: 23.r,),
                          SizedBox(width: 20.w,),
                          Text("Help",style: smallText1Style.copyWith(
-                           color: Color(0xff626262),
+                           color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
                      ),
                    ),
                    SizedBox(height: 5.h,),
-                   Divider(),
+                   const Divider(),
                    SizedBox(height: 5.h,),
                    InkWell(
                      onTap: (){
-                       Get.to(()=>ContactUs());
+                       Get.to(()=>const ContactUs());
                      },
                      child: Row(
                        crossAxisAlignment: CrossAxisAlignment.center,
                        children: [
-                         Icon(Icons.contact_phone,color: Color(0xff049486),size: 23.r,),
+                         Icon(Icons.contact_phone,color: const Color(0xff049486),size: 23.r,),
                          SizedBox(width: 20.w,),
                          Text("Contact Us",style: smallText1Style.copyWith(
-                           color: Color(0xff626262),
+                           color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
                      ),
                    ),
-                   Divider(),
+                   const Divider(),
                    SizedBox(height: 5.h,),
                    InkWell(
                      onTap: (){
-                       Get.to(()=>Transaction());
+                       Get.to(()=>const Transaction());
                      },
                      child: Row(
                        children: [
                          Container(height: 25.h,width: 25.w, child: Image.asset("assets/images/trans.png")),
                          SizedBox(width: 20.w,),
                          Text("Transaction History",style: smallText1Style.copyWith(
-                           color: Color(0xff626262),
+                           color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
                      ),
                    ),
                    SizedBox(height: 5.h,),
-                   Divider(),
+                   const Divider(),
                    InkWell(
                      onTap: (){
 
@@ -227,7 +226,7 @@ class _ProfileState extends State<Profile> {
                          Container(height: 25.h,width: 25.w, child: Icon(Icons.share,size: 23.r,color: Colors.teal,)),
                          SizedBox(width: 20.w,),
                          Text("Share App",style: smallText1Style.copyWith(
-                           color: Color(0xff626262),
+                           color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
@@ -250,7 +249,7 @@ class _ProfileState extends State<Profile> {
                    //   ),
                    // ),
                    SizedBox(height: 5.h,),
-                   Divider(),
+                   const Divider(),
                    SizedBox(height: 50.h,),
                    InkWell(
                      onTap: (){
@@ -261,14 +260,14 @@ class _ProfileState extends State<Profile> {
                          Icon(Icons.logout,color: Colors.redAccent,size: 23.r,),
                          SizedBox(width: 20.w,),
                          Text("Log Out",style: smallText1Style.copyWith(
-                           color: Color(0xff626262),
+                           color: const Color(0xff626262),
                            fontSize: 17.sp,
                          )),
                        ],
                      ),
                    ),
                    SizedBox(height: 5.h,),
-                   Divider(color: Colors.red,),
+                   const Divider(color: Colors.red,),
                    SizedBox(height: 5.h,),
                  ],
                ),
@@ -496,19 +495,19 @@ class _ProfileState extends State<Profile> {
                               elevation: 5.0,
                               minWidth: 120.r,
                               height: 40.r,
-                              color: Color(0xFF25A48B),
+                              color: const Color(0xFF25A48B),
                               child:  Text('Cancel',
                                   style: new TextStyle(fontSize: 16.r, color: Colors.white)),
                               onPressed: () {
                                 Get.back();
                               }),
-                          Spacer(),
+                          const Spacer(),
                           MaterialButton(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.r))),
                               elevation: 5.0,
                               minWidth: 120.r,
                               height: 40.r,
-                              color: Color(0xFFC90032),
+                              color: const Color(0xFFC90032),
                               child:  Text('Ok',
                                   style: new TextStyle(fontSize: 16.r, color: Colors.white)),
                               onPressed: () {

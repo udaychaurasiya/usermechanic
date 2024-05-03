@@ -20,9 +20,8 @@ class EditProfile extends StatefulWidget {
 }
 class _EditProfileState extends State<EditProfile> {
   final formKey = GlobalKey<FormState>();
-  GetStorage _storage=GetStorage();
   HomePageController controller =Get.find();
-  LoginController _controller=Get.put(LoginController());
+  final LoginController _controller=Get.put(LoginController());
   String gender = "male";
   RxInt male = 0.obs;
   @override

@@ -14,7 +14,7 @@ class TranscationHistoryModel {
   int? totalAmount;
   int? status;
   String? message;
-  List<Uday>? data;
+  List<DataDetails>? data;
 
   TranscationHistoryModel({
     this.limit,
@@ -31,7 +31,7 @@ class TranscationHistoryModel {
     totalAmount: json["totalAmount"],
     status: json["status"],
     message: json["message"],
-    data: List<Uday>.from(json["Data"].map((x) => Uday.fromJson(x))),
+    data: List<DataDetails>.from(json["Data"].map((x) => DataDetails.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,7 +44,7 @@ class TranscationHistoryModel {
   };
 }
 
-class Uday {
+class DataDetails {
   String? id;
   String? tblUserId;
   String? adminMasterId;
@@ -61,7 +61,7 @@ class Uday {
   String? bookingNo;
   String? serviceType;
 
-  Uday({
+  DataDetails({
     this.id,
     this.tblUserId,
     this.adminMasterId,
@@ -79,7 +79,7 @@ class Uday {
     this.serviceType,
   });
 
-  factory Uday.fromJson(Map<String, dynamic> json) => Uday(
+  factory DataDetails.fromJson(Map<String, dynamic> json) => DataDetails(
     id: json["id"],
     tblUserId: json["tbl_user_id"],
     adminMasterId: json["admin_master_id"],

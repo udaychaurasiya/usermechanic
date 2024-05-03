@@ -7,4 +7,5 @@ class AllImage {
   static const String splash_img = 'assets/images/splash_img.gif';
   static const String number = 'assets/images/number.png';
   static const String otp = 'assets/images/otp.png';
+  static const String noDataFound = 'assets/images/noDataFound.png';
 }

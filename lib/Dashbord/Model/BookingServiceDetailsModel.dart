@@ -56,7 +56,7 @@ class Data {
   String? bookingStatus;
   String? paymentStatus;
   DateTime? addDate;
-  dynamic? modifyDate;
+  dynamic modifyDate;
   String? serviceType;
   String? brandName;
   int? payableAmount;
@@ -279,7 +279,7 @@ class TransectionList {
     amount: json["amount"],
     remark: json["remark"],
     status: json["status"],
-    addDate:json["add_date"].toString()??" ",
+    addDate:json["add_date"]??"",
   );
 
   Map<String, dynamic> toJson() => {

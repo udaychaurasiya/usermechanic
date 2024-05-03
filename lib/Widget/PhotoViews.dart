@@ -1,22 +1,24 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+
 class SingleImageView extends StatelessWidget {
   String image;
   SingleImageView( this.image, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
 
-    print("dfhghjhjk"+image);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white.withOpacity(0.5),
         leadingWidth: 60,
         elevation: 0.0,
-        leading: new IconButton
+        leading: IconButton
           (
-          icon: new Icon(Icons.arrow_back_ios, color: Colors.grey),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.grey),
           onPressed: () => Navigator.of(context).pop(),
         ),
 

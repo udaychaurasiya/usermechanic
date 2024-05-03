@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -72,8 +71,6 @@ class HomePageController extends GetxController {
   RxBool isLodingShopList = false.obs;
   LoginController loginController=Get.put(LoginController());
   var categryModel2 = CategryModel(data: []).obs;
-  var categryModel = [].obs;
-
   var faqModel = FaqModel().obs;
   var shoplistModel = ShopListModel(data: []).obs;
   var bookingservicedetails = BookingServiceDeatilsModel().obs;
@@ -220,20 +217,23 @@ class HomePageController extends GetxController {
   }
 
   Future<dynamic>getCategryNetworkApi() async {
-    categryModel2.value.data.clear();
-    categryModel.value=[];
+    // categryModel2.value.data.clear();
+    // categryModel.value=[];
     var response = await BaseClient()
         .get("$getCategryApi?lng=eng")
         .catchError(BaseController().handleError);
-
+    print("response ===========>>>>>>>>>>>>>>>>>>> $response");
     if (jsonDecode(response)["status"] == 1) {
+      // categryModel.value = categryModel2.value.data;
       categryModel2.value = categryModelFromJson(response);
-      categryModel.value = categryModel2.value.data;
+      categryModel2.refresh();
       update();
-      categryModel.refresh();
       return;
     }
-    BaseController().errorSnack(jsonDecode(response)["message"]);
+    categryModel2.value = categryModelFromJson(response);
+    categryModel2.refresh();
+    update();
+    // BaseController().errorSnack(jsonDecode(response)["message"]);
   }
 
   getNotificationNetworkApi() async {

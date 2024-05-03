@@ -1,13 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:share_plus/share_plus.dart';
@@ -17,7 +15,6 @@ import 'package:usermechanic/Dashbord/Model/TranscationModel.dart';
 import 'package:usermechanic/Widget/styles.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-import '../../../mathod/AppConstant.dart';
 class TranscationDeatil extends StatefulWidget {
   final String id;
   const TranscationDeatil(this.id,{Key? key}) : super(key: key);
@@ -28,8 +25,8 @@ class TranscationDeatil extends StatefulWidget {
 
 class _TranscationDeatilState extends State<TranscationDeatil> {
   HomePageController controller=Get.put(HomePageController());
-  List<Uday> Transctions=[];
-  Uday data=Uday();
+  List<DataDetails> Transctions=[];
+  DataDetails data=DataDetails();
   @override
   void initState() {
     // TODO: implement initState
@@ -39,6 +36,8 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
     controller.getTransctionDetails(widget.id);
     controller.getContactUsNetworkApi();
   }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -46,12 +45,11 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
         toolbarHeight: 40.r,
         backgroundColor: Colors.teal,
         leadingWidth: 20.r,
-        title: Text("Transcation Deatils",style: TextStyle(fontSize: 14.r)),
+        title: Text("Transaction Details",style: TextStyle(fontSize: 14.r)),
         actions: [
           Padding(
             padding:  EdgeInsets.only(right: 8.r),
             child: IconButton(onPressed: ()async{
-              final pdfBytes = await generatePDF();
             }, icon: Icon(Icons.share,size: 25.r,)),
           )
         ],
@@ -61,7 +59,7 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
             SingleChildScrollView(
               child: Column(
               children: List.generate(1, (index){
-                return Container(
+                return SizedBox(
                   width: Get.width,
                   child: Padding(
                     padding:  EdgeInsets.all(8.r),
@@ -69,7 +67,7 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
                       children: [
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: Get.width/2.1,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +79,7 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
                                 ],
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: Get.width/2.1,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -228,7 +226,7 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                               width:Get.width/2,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -242,7 +240,7 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
                               ),
                             ),
                              Spacer(),
-                             Container(
+                             SizedBox(
                               width: 140.w,
                               child: Column(
                                 children: [
@@ -278,8 +276,6 @@ class _TranscationDeatilState extends State<TranscationDeatil> {
   Future<void> generatePDF() async {
 
     final pdf = pw.Document();
-    final ByteData bytes = await rootBundle.load('assets/images/norecord.png');
-    final Uint8List byteList = bytes.buffer.asUint8List();
     pdf.addPage(
       pw.Page(
         build: (context) {

@@ -57,7 +57,7 @@ class LoginController extends GetxController {
       "device_id": "",
       "fcm_id": fcmTokan.toString(),
     };
-    print("request >>>>>>>>>>>>> $bodyRequest");
+    print("request ==============>>>>>>>>>>>>> $bodyRequest");
     Get.context!.loaderOverlay.show();
     var response = await BaseClient()
         .post(SignIn, bodyRequest)
@@ -68,7 +68,7 @@ class LoginController extends GetxController {
     if (jsonDecode(response)["status"] == 1) {
       // isLoading.value = true;
       BaseController().successSnack(jsonDecode(response)["message"]+ " " + jsonDecode(response)["Data"]["otp"]);
-      Get.to(() => OtpVeriffy(id: jsonDecode(response)["Data"]["id"] ?? "",otp: jsonDecode(response)["Data"]["otp"] ?? "",));
+      Get.to(() => OtpVerifyScreen(id: jsonDecode(response)["Data"]["id"] ?? "",otp: jsonDecode(response)["Data"]["otp"] ?? "",));
       return;
     }
     _storage.write(AppConstant.fcm_token, jsonDecode(response)["Data"]["fcm_id"] ?? "");

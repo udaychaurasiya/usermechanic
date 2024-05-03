@@ -5,11 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:usermechanic/AppConstant/APIConstant.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
+import 'package:usermechanic/Dashbord/Model/BookingModel.dart';
 import 'package:usermechanic/Widget/coustom_Dailog.dart';
 import 'package:usermechanic/Widget/styles.dart';
 
-import '../Model/BannerModel.dart';
-import '../Model/BookingModel.dart';
+
 class BookingDetails extends StatefulWidget {
   final String id;
   const BookingDetails(this.id,{Key? key}) : super(key: key);
@@ -21,6 +21,7 @@ class BookingDetails extends StatefulWidget {
 class _BookingDetailsState extends State<BookingDetails> {
   HomePageController controller=Get.put(HomePageController());
   Datum  data=Datum();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -90,13 +91,13 @@ class _BookingDetailsState extends State<BookingDetails> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(":  "+data.bookingNo.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                            Text(":  ${data.bookingNo}",style:bodybold3Style.copyWith(color: Colors.black),),
                             SizedBox(height: 5.h,),
-                            data.username!=null?Text(":  "+data.username.toString()??"",style:bodybold3Style.copyWith(color: Colors.black),):Text(":",style:bodybold3Style.copyWith(color: Colors.black)),
+                            data.username!=null?Text(":  ${data.username}",style:bodybold3Style.copyWith(color: Colors.black),):Text(":",style:bodybold3Style.copyWith(color: Colors.black)),
                             SizedBox(height: 5.h,),
-                            data.ownerName!=null?Text(":  "+data.ownerName.toString()??"",style:bodybold3Style.copyWith(color: Colors.black),):Text(":",style:bodybold3Style.copyWith(color: Colors.black)),
+                            data.ownerName!=null?Text(":  ${data.ownerName}",style:bodybold3Style.copyWith(color: Colors.black),):Text(":",style:bodybold3Style.copyWith(color: Colors.black)),
                             SizedBox(height: 5.h,),
-                            Text(":  "+data.mobileNo.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                            Text(":  ${data.mobileNo}",style:bodybold3Style.copyWith(color: Colors.black),),
                           ],
                         ),
                       ),
@@ -107,7 +108,7 @@ class _BookingDetailsState extends State<BookingDetails> {
               Divider(),
               Padding(
                 padding:  EdgeInsets.only(left: 8.w,right: 8.w),
-                child: Text("Service Details:",style: TextStyle(color: Color(0xff049486),fontSize: 15.sp,fontWeight: FontWeight.w800),),
+                child: Text("Service Details:",style: TextStyle(color: const Color(0xff049486),fontSize: 15.sp,fontWeight: FontWeight.w800),),
               ),
               SizedBox(height: 10.h,),
               Padding(
@@ -140,13 +141,13 @@ class _BookingDetailsState extends State<BookingDetails> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(":   "+data.serviceType.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                            Text(":   ${data.serviceType}",style:bodybold3Style.copyWith(color: Colors.black),),
                             SizedBox(height: 5.h,),
-                            Text(":   "+Date2.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                            Text(":   $Date2",style:bodybold3Style.copyWith(color: Colors.black),),
                             SizedBox(height: 5.h,),
-                            Text(":   "+Date.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                            Text(":   $Date",style:bodybold3Style.copyWith(color: Colors.black),),
                             SizedBox(height: 5.h,),
-                            Text(":   "+data.modifyDate.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                            Text(":   ${data.modifyDate}",style:bodybold3Style.copyWith(color: Colors.black),),
                           ],
                         ),
                       ),
@@ -204,7 +205,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(": "+data.bikeCc.toString(),style:bodybold3Style.copyWith(color: Colors.black),),
+                                  Text(": ${data.bikeCc}",style:bodybold3Style.copyWith(color: Colors.black),),
                                   SizedBox(height: 5.h,),
                                   Text(data.status == "0" ? "Rejected" :
                                   data.bookingStatus == "0" ? "Pending" :
@@ -289,8 +290,8 @@ class _BookingDetailsState extends State<BookingDetails> {
                           SizedBox(height: 5.0.h),
                           InkWell(
                             onTap: () {
-                              print( BASE_URL+data.idProve.toString()+"kdnfh");
-                              print( BASE_URL+data.vinNoPic.toString()+"kdnfh2");
+                              print( "$BASE_URL${data.idProve}kdnfh");
+                              print( "$BASE_URL${data.vinNoPic}kdnfh2");
                               showAnimatedDialog1(
                                   context,
                                   Center(

@@ -1,9 +1,10 @@
+// ignore_for_file: deprecated_member_use, unnecessary_null_comparison
+
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:usermechanic/AppConstant/APIConstant.dart';
@@ -14,6 +15,8 @@ import 'package:usermechanic/Widget/TextStyle.dart';
 import 'package:usermechanic/Widget/styles.dart';
 import 'package:usermechanic/utils/custom_snackbar.dart';
 import '../Model/ShopDetailsModel.dart';
+
+
 class BookingShop extends StatefulWidget {
   final String id;
   const BookingShop( this.id,{Key? key}) : super(key: key);
@@ -33,7 +36,7 @@ class _BookingShopState extends State<BookingShop> {
     final pickedFile = await picker.getImage(source: source);
     if (pickedFile != null) {
       setState(() {
-        uploadPhoto = new File(pickedFile.path);
+        uploadPhoto = File(pickedFile.path);
         print(uploadPhoto!.path);
       });
     }
@@ -42,8 +45,10 @@ class _BookingShopState extends State<BookingShop> {
     final pickedFile = await picker.getImage(source: source);
     if (pickedFile != null) {
       setState(() {
-        uploadPhoto2 = new File(pickedFile.path);
-        print(uploadPhoto2!.path);
+        uploadPhoto2 = File(pickedFile.path);
+        if (kDebugMode) {
+          print(uploadPhoto2!.path);
+        }
       });
     }
   }
@@ -65,9 +70,9 @@ class _BookingShopState extends State<BookingShop> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Color(0xff049486),
+        backgroundColor: const Color(0xff049486),
         leadingWidth: 20.w,
-        title: Text("Booking Service"),
+        title: const Text("Booking Service"),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -75,7 +80,7 @@ class _BookingShopState extends State<BookingShop> {
               children: [
                 Padding(
                   padding:  EdgeInsets.only(left:28.w,right: 28.w,top: 20.h),
-                  child: Text(data.shopName.toString(),style: TextStyle(color: Color(0xff105648),fontWeight: FontWeight.bold,fontSize: 20.sp),),
+                  child: Text(data.shopName.toString(),style: TextStyle(color: const Color(0xff105648),fontWeight: FontWeight.bold,fontSize: 20.sp),),
                 ),
                 Padding(
                     padding:  EdgeInsets.only(left:28.w,right: 28.w,top: 20.h),
@@ -85,51 +90,49 @@ class _BookingShopState extends State<BookingShop> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 10.h,),
-                          Obx(()=>controller.categryModel2.value.data!=null? Container(
-                            child: DropdownButtonFormField<dynamic>(
-                              decoration: InputDecoration(
-                                labelText: "Select Categry Type",
-                                contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 20.r),
-                                labelStyle: robotoRegular.copyWith(
-                                    color: Color(0xff049486)),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                focusedBorder:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                errorBorder:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                border:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                focusedErrorBorder:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
+                          Obx(()=>controller.categryModel2.value.data!=null? DropdownButtonFormField<dynamic>(
+                            decoration: InputDecoration(
+                              labelText: "Select Category Type",
+                              contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 20.r),
+                              labelStyle: robotoRegular.copyWith(
+                                  color: const Color(0xff049486)),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
-                              value:_selectedItem2,
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedItem2 = value;
-                                });
-                                controller.Categary_Id.value=_selectedItem2;
-                                print("fygdjgjdfghhjdfg"+controller.idProveType2.value);
-                              },
-                              validator: (value) {
-                                if (controller.Categary_Id.value == 0) {
-                                  return "Please select Brand Type";
-                                }
-                                return null;
-                              },
-                              items: controller.categryModel2.value.data.map((dynamic item) {
-                                return DropdownMenuItem<dynamic>(
-                                  value: item.id.toString(),
-                                  child: Text(item.title.toString()),
-                                );
-
-                              }).toList(),
+                              focusedBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
+                              errorBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
+                              border:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
+                              focusedErrorBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
                             ),
+                            value:_selectedItem2,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedItem2 = value;
+                              });
+                              controller.Categary_Id.value=_selectedItem2;
+                              print("fygdjgjdfghhjdfg"+controller.idProveType2.value);
+                            },
+                            validator: (value) {
+                              if (controller.Categary_Id.value == 0) {
+                                return "Please select Brand Type";
+                              }
+                              return null;
+                            },
+                            items: controller.categryModel2.value.data.map((dynamic item) {
+                              return DropdownMenuItem<dynamic>(
+                                value: item.id.toString(),
+                                child: Text(item.title.toString()),
+                              );
+
+                            }).toList(),
                           ):Container()
                           ),
                           SizedBox(height: 25.h,),
@@ -251,51 +254,49 @@ class _BookingShopState extends State<BookingShop> {
                             },
                           )
                           ),*/
-                          Obx(()=>controller.brandModel.value.data!=null? Container(
-                            child: DropdownButtonFormField<dynamic>(
-                              decoration: InputDecoration(
-                                labelText: "Select Brand Type",
-                                contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 20.r),
-                                labelStyle: robotoRegular.copyWith(
-                                    color: Color(0xff049486)),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                focusedBorder:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                errorBorder:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                border:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
-                                focusedErrorBorder:OutlineInputBorder(
-                                  borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
-                                ),
+                          Obx(()=>controller.brandModel.value.data!=null? DropdownButtonFormField<dynamic>(
+                            decoration: InputDecoration(
+                              labelText: "Select Brand Type",
+                              contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 20.r),
+                              labelStyle: robotoRegular.copyWith(
+                                  color: const Color(0xff049486)),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
-                              value:_selectedItem,
-                              onChanged: (value) {
-                                setState(() {
-                                  _selectedItem = value;
-                                });
-                                controller.idProveType2.value=_selectedItem;
-                                print("fygdjgjdfghhjdfg"+controller.idProveType2.value);
-                              },
-                              validator: (value) {
-                                if (controller.idProveType2.value == 0) {
-                                  return "Please select Brand Type";
-                                }
-                                return null;
-                              },
-                              items: controller.brandModel.value.data.map((dynamic item) {
-                                return DropdownMenuItem<dynamic>(
-                                  value: item.id.toString(),
-                                  child: Text(item.title.toString()),
-                                );
-
-                              }).toList(),
+                              focusedBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
+                              errorBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
+                              border:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
+                              focusedErrorBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
+                              ),
                             ),
+                            value:_selectedItem,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedItem = value;
+                              });
+                              controller.idProveType2.value=_selectedItem;
+                              print("fygdjgjdfghhjdfg"+controller.idProveType2.value);
+                            },
+                            validator: (value) {
+                              if (controller.idProveType2.value == 0) {
+                                return "Please select Brand Type";
+                              }
+                              return null;
+                            },
+                            items: controller.brandModel.value.data.map((dynamic item) {
+                              return DropdownMenuItem<dynamic>(
+                                value: item.id.toString(),
+                                child: Text(item.title.toString()),
+                              );
+
+                            }).toList(),
                           ):Container()
                           ),
                           SizedBox(height: 20.h,),
@@ -310,20 +311,20 @@ class _BookingShopState extends State<BookingShop> {
                               contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 20.r),
                               labelText: "Select Slot Type",
                               labelStyle: robotoRegular.copyWith(
-                                  color: Color(0xff049486)),
-                              enabledBorder: OutlineInputBorder(
+                                  color: const Color(0xff049486)),
+                              enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
-                              errorBorder:OutlineInputBorder(
+                              errorBorder:const OutlineInputBorder(
                                 borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
-                              border:OutlineInputBorder(
+                              border:const OutlineInputBorder(
                                 borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
-                              focusedErrorBorder:OutlineInputBorder(
+                              focusedErrorBorder:const OutlineInputBorder(
                                 borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                               ),
                             ),
@@ -333,7 +334,7 @@ class _BookingShopState extends State<BookingShop> {
                                 child: Text(
                                   'Select Slot Type',
                                   style: robotoRegular.copyWith(
-                                      color: Color(0xffc2bfbf)),
+                                      color: const Color(0xffc2bfbf)),
                                 ),
                               ),
                               DropdownMenuItem(
@@ -475,32 +476,32 @@ class _BookingShopState extends State<BookingShop> {
                               },
                               decoration: InputDecoration(
                                 prefixIconConstraints:
-                                BoxConstraints(
+                                const BoxConstraints(
                                   minWidth: 20,
                                 ),
-                                contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                                contentPadding:const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       width:.5,color: Color(0xffc2bfbf)),
                                 ),
-                                border:OutlineInputBorder(
+                                border:const OutlineInputBorder(
                                   borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                                 ),
                                 focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       width:.5,color: Color(0xffc2bfbf)),
                                 ),
-                                errorBorder:OutlineInputBorder(
+                                errorBorder:const OutlineInputBorder(
                                   borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                                 ),
-                                focusedErrorBorder:OutlineInputBorder(
+                                focusedErrorBorder:const OutlineInputBorder(
                                   borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
                                 ),
                                 labelText: "Service Date",
                                 labelStyle: robotoRegular.copyWith(
-                                  color: Color(0xff049486),),
+                                  color: const Color(0xff049486),),
                                 isDense: true,
-                                counter: Offstage(),
+                                counter: const Offstage(),
                               ),
                               readOnly: true,
                               onTap: () async {
@@ -514,7 +515,7 @@ class _BookingShopState extends State<BookingShop> {
                                         Theme.of(context)
                                             .copyWith(
                                           colorScheme:
-                                          ColorScheme
+                                          const ColorScheme
                                               .light(
                                             primary:
                                             Colors.white,
@@ -580,7 +581,7 @@ class _BookingShopState extends State<BookingShop> {
                           //
                           // ),
                           SizedBox(height: 20.h,),
-                          Text("Uplode Document :-",style: TextStyle(
+                          const Text("Uplode Document :-",style: TextStyle(
                               color: Color(0xfff50202),fontWeight: FontWeight.bold
                           ),),
                           SizedBox(height: 8.h,),
@@ -590,7 +591,7 @@ class _BookingShopState extends State<BookingShop> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Vin No. Pic:-",style: TextStyle(
+                                    const Text("Vin No. Pic:-",style: TextStyle(
                                         color: Color(0xff049486),fontWeight: FontWeight.bold
                                     ),),
                                     SizedBox(height: 5.h,),
@@ -649,7 +650,7 @@ class _BookingShopState extends State<BookingShop> {
                                 Column(
                                   crossAxisAlignment:CrossAxisAlignment.start,
                                   children: [
-                                    Text("Id Prove:-",style: TextStyle(
+                                    const Text("Id Prove:-",style: TextStyle(
                                         color: Color(0xff049486),fontWeight: FontWeight.bold
                                     ),),
                                     SizedBox(height: 5.h,),
@@ -732,7 +733,7 @@ class _BookingShopState extends State<BookingShop> {
   showOptionDailog(BuildContext context) {
     return showDialog(context: context, builder: (context) =>
         SimpleDialog(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4.0))),
           backgroundColor:Colors.white
               .withOpacity(0.9),
@@ -744,7 +745,7 @@ class _BookingShopState extends State<BookingShop> {
               },
               child: Row(
                 children: [
-                  Icon(Icons.image,color: Color(0xff049486),),
+                  const Icon(Icons.image,color: Color(0xff049486),),
                   Text("   Gallery", style:smallTextStyle)
                 ],
               ),
@@ -756,7 +757,7 @@ class _BookingShopState extends State<BookingShop> {
               },
               child: Row(
                 children: [
-                  Icon(Icons.camera_alt,color: Color(0xff049486),),
+                  const Icon(Icons.camera_alt,color: Color(0xff049486),),
                   Text("   Camera", style:smallTextStyle)
                 ],
               ),
@@ -765,7 +766,7 @@ class _BookingShopState extends State<BookingShop> {
               onPressed: () => Get.back(),
               child: Row(
                 children: [
-                  Icon(Icons.clear,color: Colors.red,),
+                  const Icon(Icons.clear,color: Colors.red,),
                   Text("  Cancel", style: smallTextStyle)
                 ],
               ),
@@ -776,7 +777,7 @@ class _BookingShopState extends State<BookingShop> {
   showOptionDailog2(BuildContext context) {
     return showDialog(context: context, builder: (context) =>
         SimpleDialog(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4.0))),
           backgroundColor:Colors.white
               .withOpacity(0.9),
@@ -788,7 +789,7 @@ class _BookingShopState extends State<BookingShop> {
               },
               child: Row(
                 children: [
-                  Icon(Icons.image,color: Color(0xff049486),),
+                  const Icon(Icons.image,color: Color(0xff049486),),
                   Text("   Gallery", style:smallTextStyle)
                 ],
               ),
@@ -800,7 +801,7 @@ class _BookingShopState extends State<BookingShop> {
               },
               child: Row(
                 children: [
-                  Icon(Icons.camera_alt,color: Color(0xff049486),),
+                  const Icon(Icons.camera_alt,color: Color(0xff049486),),
                   Text("   Camera", style:smallTextStyle)
                 ],
               ),
@@ -809,7 +810,7 @@ class _BookingShopState extends State<BookingShop> {
               onPressed: () => Get.back(),
               child: Row(
                 children: [
-                  Icon(Icons.clear,color: Colors.red,),
+                  const Icon(Icons.clear,color: Colors.red,),
                   Text("  Cancel", style: smallTextStyle)
                 ],
               ),

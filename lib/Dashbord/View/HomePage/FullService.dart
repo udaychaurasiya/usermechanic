@@ -8,12 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:html/parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:readmore/readmore.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
+import 'package:usermechanic/Dashbord/Model/CategryModel.dart';
 import 'package:usermechanic/Widget/CoustomButton.dart';
 import 'package:usermechanic/Widget/EditTextWidget.dart';
 import 'package:usermechanic/Widget/TextStyle.dart';
@@ -22,7 +20,6 @@ import 'package:usermechanic/auth/logincontroller.dart';
 import 'package:usermechanic/mathod/AppConstant.dart';
 import 'package:usermechanic/utils/custom_snackbar.dart';
 
-import '../../Model/CategryModel.dart';
 class FullService extends StatefulWidget {
 
   const FullService( {Key? key}) : super(key: key);
@@ -36,7 +33,7 @@ class _FullServiceState extends State<FullService> {
   final LoginController loginController=Get.put(LoginController());
   GoogleMapController? mapController;
   LatLng? selectedLocation;
-  Datum2  data=Datum2();
+  Datum2  data = Datum2();
   final formKey3 = GlobalKey<FormState>();
   final picker = ImagePicker();
   File? uploadPhoto;
@@ -62,7 +59,6 @@ class _FullServiceState extends State<FullService> {
     }
   }
   var _selectedItem;
-  var _selectedItem1;
 
   @override
   void initState() {
@@ -80,11 +76,6 @@ class _FullServiceState extends State<FullService> {
   @override
   Widget build(BuildContext context) {
     controller.etAddress.text = loginController.current_address.value.toString();
-    print(controller.etAddress.text+"sidhfuvg");
-    DateTime currentDate = DateTime.now();
-    DateTime oneMonthLater = currentDate.add(Duration(days: 30));
-    final document = parse(data.description);
-      final String parsedString = parse(document.body?.text).documentElement!.text;
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,

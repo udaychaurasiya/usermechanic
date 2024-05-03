@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
-import 'package:usermechanic/Dashbord/View/Profile/TranscationDeatils.dart';
 import 'package:usermechanic/Dashbord/View/Profile/TranscationDetail.dart';
+import 'package:usermechanic/Widget/styles.dart';
+import 'package:usermechanic/utils/data_not_found.dart';
 
-import '../../../Widget/styles.dart';
 class Transaction extends StatefulWidget {
   const Transaction({Key? key}) : super(key: key);
   @override
@@ -21,17 +20,13 @@ class _TransactionState extends State<Transaction> {
     super.initState();
     controller.getTransctionHistoryApi(SearchKey);
   }
+
+  @override
   Widget build(BuildContext context) {
-    double height, width;
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-    void _selectOption(option) {
-      print('Selected: $option');
-    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Text("Transaction History"),
+        title: const Text("Transaction History"),
         leadingWidth: 30.w,
       ),
       body:
@@ -69,8 +64,7 @@ class _TransactionState extends State<Transaction> {
                                   SearchKey = value;
                                   controller.getTransctionHistoryApi(value);
                                 },
-                                style:
-                                smallTextStyle.copyWith(color: Colors.black),
+                                style: smallTextStyle.copyWith(color: Colors.black),
                                 decoration: InputDecoration(
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
@@ -353,11 +347,11 @@ class _TransactionState extends State<Transaction> {
                     )
                   ],
                 ) : Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.only(top: 150.0.h),
-              child: const Image(
-                  image: AssetImage("assets/images/norecord.png")),
-            ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(top: 150.0.h),
+                    child: const DataNotFound() /*Image(
+                        image: AssetImage("assets/images/norecord.png"))*/,
+                  ),
             ),
           ),
     );

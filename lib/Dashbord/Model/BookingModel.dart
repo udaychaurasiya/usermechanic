@@ -36,7 +36,7 @@ class BookingModel {
     "message": message,
     "limit": limit,
     "page": page,
-    "Data": List<dynamic>.from(data!.map((x) => x.toJson())),
+    "Data": List<dynamic>.from(data.map((x) => x.toJson())),
   };
 }
 

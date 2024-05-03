@@ -43,7 +43,7 @@ class NotificationModel {
 class Datum {
   String? id;
   String? mesage;
-  dynamic? tblUserId;
+  dynamic tblUserId;
   String? adminMasterId;
   String? typeId;
   String? notiType;

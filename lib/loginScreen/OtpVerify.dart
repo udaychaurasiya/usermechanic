@@ -227,23 +227,21 @@ import 'package:otp_text_field/style.dart';
 import 'package:usermechanic/Widget/TextStyle.dart';
 import 'package:usermechanic/Widget/btn.dart';
 import 'package:usermechanic/Widget/coustomAnimation.dart';
+import 'package:usermechanic/Widget/styles.dart';
 import 'package:usermechanic/auth/logincontroller.dart';
+import 'package:usermechanic/utils/dimentions.dart';
 
-import '../Widget/styles.dart';
-import '../utils/all_image.dart';
-import '../utils/dimentions.dart';
-
-class OtpVeriffy extends StatefulWidget {
+class OtpVerifyScreen extends StatefulWidget {
   final String id;
   final String otp;
-  const OtpVeriffy({Key? key, required this.id, required this.otp})
+  const OtpVerifyScreen({Key? key, required this.id, required this.otp})
       : super(key: key);
 
   @override
-  State<OtpVeriffy> createState() => _OtpVeriffyState();
+  State<OtpVerifyScreen> createState() => _OtpVerifyScreen();
 }
 
-class _OtpVeriffyState extends State<OtpVeriffy> {
+class _OtpVerifyScreen extends State<OtpVerifyScreen> {
   final LoginController _controller = Get.put(LoginController());
 
   @override

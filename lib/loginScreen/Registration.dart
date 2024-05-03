@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
 import 'package:usermechanic/Widget/EditTextWidget.dart';
 import 'package:usermechanic/Widget/styles.dart';
 import 'package:usermechanic/auth/logincontroller.dart';
 import 'package:usermechanic/utils/CircularButton.dart';
+
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
@@ -18,7 +17,7 @@ class _RegistrationState extends State<Registration> {
   final _formKey = GlobalKey<FormState>();
   late String deviceId;
   LoginController controller=Get.put(LoginController());
-  HomePageController _controller=Get.put(HomePageController());
+
   @override
   void initState() {
     // TODO: implement initState

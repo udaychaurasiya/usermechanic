@@ -28,7 +28,7 @@ class CategryModel {
   Map<String, dynamic> toJson() => {
     "status": status,
     "message": message,
-    "Data": List<dynamic>.from(data!.map((x) => x.toJson())),
+    "Data": List<dynamic>.from(data.map((x) => x.toJson())),
   };
 }
 

@@ -74,7 +74,7 @@ class NotificationServices {
       importance: Importance.high,
       priority: Priority.high,
       ticker: 'ticker',
-      sound: RawResourceAndroidNotificationSound('noti'),
+      sound: const RawResourceAndroidNotificationSound('noti'),
     );
 
     const DarwinNotificationDetails darwinNotificationDetails =

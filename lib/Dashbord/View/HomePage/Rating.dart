@@ -1,16 +1,15 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
 import 'package:usermechanic/Dashbord/View/Dashbord.dart';
-import '../../../Widget/styles.dart';
-import '../../../utils/CircularButton.dart';
+import 'package:usermechanic/Widget/styles.dart';
+import 'package:usermechanic/utils/CircularButton.dart';
+
+
 class RateUsApp extends StatefulWidget {
   RateUsApp(String string, {Key? key}) : super(key: key);
   @override
@@ -27,18 +26,18 @@ class _RateUsAppState extends State<RateUsApp> {
       appBar: AppBar(
         backgroundColor: Colors.teal,
         leadingWidth: 30.w,
-        title: Text("Rate Us"),
+        title: const Text("Rate Us"),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: 2.h),
           child: Column(
             children:[
-              Image(image: AssetImage("assets/images/bike2.jpg",),height: 200.h,fit: BoxFit.fitWidth,),
-              Container(child: Text("Like Using This Mechanic, Show some Love",
+              Image(image: const AssetImage("assets/images/bike2.jpg",),height: 200.h,fit: BoxFit.fitWidth,),
+              Text("Like Using This Mechanic, Show some Love",
                 style: titleStyle.copyWith(fontSize: 14.sp,
-                    fontWeight: FontWeight.w900),),),
-              SizedBox(height: 30,),
+                    fontWeight: FontWeight.w900),),
+              const SizedBox(height: 30,),
               RatingBar.builder(
                 initialRating: 0,
                 minRating: 1,
@@ -46,8 +45,8 @@ class _RateUsAppState extends State<RateUsApp> {
                 allowHalfRating: false,
                 unratedColor: Colors.grey,
                 itemCount: 5,
-                itemPadding: EdgeInsets.symmetric(horizontal: 8.0),
-                itemBuilder: (context, _) => Icon(
+                itemPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+                itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,
                 ),
@@ -64,7 +63,7 @@ class _RateUsAppState extends State<RateUsApp> {
                       padding: EdgeInsets.only(
                         top: 30.h,),
                       child: Container(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Container(
                             padding: EdgeInsets.zero,
                             decoration: BoxDecoration(
@@ -82,26 +81,26 @@ class _RateUsAppState extends State<RateUsApp> {
                                   style: smallTextStyle,
                                   decoration: InputDecoration(
                                     alignLabelWithHint: true,
-                                    enabledBorder: OutlineInputBorder(
+                                    enabledBorder: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                         borderSide: BorderSide(
                                             color:Colors.teal
                                         )
                                     ),
 
-                                    border: OutlineInputBorder(
+                                    border: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                         borderSide: BorderSide(
                                             color:Colors.teal
                                         )
                                     ),
-                                    errorBorder: OutlineInputBorder(
+                                    errorBorder: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                         borderSide: BorderSide(
                                             color:Colors.teal
                                         )
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                         borderSide: BorderSide(
                                             width: 1,color:Colors.teal
@@ -148,8 +147,8 @@ class _RateUsAppState extends State<RateUsApp> {
                             }
                             else {
                               controller.postFeedbackRatingNetworkApi(etmessage.text, ratingvalue,);
-                              Timer(Duration(seconds: 2), () {
-                                Get.offAll(()=>Dashbord());
+                              Timer(const Duration(seconds: 2), () {
+                                Get.offAll(()=>const Dashbord());
                               });
                             }
                           }

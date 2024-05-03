@@ -53,7 +53,6 @@ class BaseClient{
       var res = await request.send();
       var response=await http.Response.fromStream(res);
       return response.body;
-      _processResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet connection', uri.toString());
     } on TimeoutException {
@@ -76,7 +75,6 @@ class BaseClient{
       var res = await request.send();
       var response=await http.Response.fromStream(res);
       return response.body;
-      _processResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet connection', uri.toString());
     } on TimeoutException {
@@ -95,7 +93,6 @@ class BaseClient{
       var res = await request.send();
       var response=await http.Response.fromStream(res);
       return response.body;
-      _processResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet connection', uri.toString());
     } on TimeoutException {

@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:usermechanic/AppConstant/APIConstant.dart';
@@ -16,13 +11,13 @@ import 'package:usermechanic/Dashbord/View/Help.dart';
 import 'package:usermechanic/Dashbord/View/HomePage/HomePage.dart';
 import 'package:usermechanic/Dashbord/View/Notification.dart';
 import 'package:usermechanic/Dashbord/View/Profile/Profile.dart';
+import 'package:usermechanic/Widget/TextStyle.dart';
 import 'package:usermechanic/Widget/coustom_Dailog.dart';
 import 'package:usermechanic/Widget/styles.dart';
 import 'package:usermechanic/auth/logincontroller.dart';
 import 'package:usermechanic/mathod/AppConstant.dart';
+import 'package:usermechanic/utils/dimentions.dart';
 
-import '../../Widget/TextStyle.dart';
-import '../../utils/dimentions.dart';
 class Dashbord extends StatefulWidget {
   const Dashbord({Key? key}) : super(key: key);
 
@@ -36,10 +31,10 @@ class _DashbordState extends State<Dashbord> {
   int _currentIndex=0;
   DateTime? currentBackPressTime;
   List admin=[
-    HomePage(),
-    Booking(),
-    Help(),
-    Profile(),
+    const HomePage(),
+    const Booking(),
+    const Help(),
+    const Profile(),
   ];
 
   @override
@@ -50,100 +45,78 @@ class _DashbordState extends State<Dashbord> {
     controller.postcurrentaddressNetworkApi();
     print(controller.address.value);
   }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop:onWillPop,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50.r),
-          child: _currentIndex == 3? SizedBox():AppBar(
+          preferredSize: Size.fromHeight(52.r),
+          child: _currentIndex == 3? const SizedBox():AppBar(
             toolbarHeight: 50.r,
             elevation: 0,
-            backgroundColor: Color(0xff049486),
-            title: Container(
-              height: 50.h,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  InkWell(onTap: (){
-                    setState(() {
-                      _currentIndex=3;
-                    });
-                  },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white,width: 2.r)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100.r),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl:BASE_URL+GetStorage().read(AppConstant.profileImg).toString(),
-                          height:40.r,
-                          width: 40.r,
-                          placeholder: (context, url) =>
-                              Center(child: const CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                          const Icon(Icons.person,color: Colors.white,),
+            backgroundColor: const Color(0xff049486),
+            title: Padding(
+              padding: EdgeInsets.only(top: 2.0.r),
+              child: Obx(() => Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    InkWell(onTap: (){
+                      setState(() {
+                        _currentIndex=3;
+                      });
+                    },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white,width: 1.r)
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100.r),
+                          child: CachedNetworkImage(
+
+                            fit: BoxFit.cover,
+                            imageUrl: BASE_URL+GetStorage().read(AppConstant.profileImg).toString(),
+                            height: 36.r,
+                            width: 36.r,
+                            placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                            const Icon(Icons.person,color: Colors.white,),
+                          ),
                         ),
                       ),
                     ),
-                  ),SizedBox(width:5.r,),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Icon(Icons.location_on_outlined,color: Colors.green,size: 25.sp,),
-                      Container(
-                        width: 180.r,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                                Text(GetStorage().read(AppConstant.userName).toString()??"",style:bodyboldStyle.copyWith(color:Colors.white
-                                 ,height: 1.h,fontSize:15.r),overflow: TextOverflow.ellipsis,maxLines: 2,),
-                            // Obx(()=> Container(
-                            //   width: 200.r,
-                            //   child: Column(
-                            //     crossAxisAlignment: CrossAxisAlignment.start,
-                            //     children: [
-                            //       controller.address.value.toString()!=null?
-                            //       Text(controller.address.value.toString(),style: smallTextStyle.copyWith(fontSize:10.sp,color:Colors.white),):Text("Loading......"),
-                            //     ],
-                            //   ),
-                            // )),
-                            Obx(() => Container(
-                              width: 200.r,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    loginController.current_address.value.toString().isNotEmpty?loginController.current_address.value.toString():"Wait loading...",
-                                    style: robotoRegular.copyWith(
-                                        fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            )
-                            )
-                          ],
-                        ),
+                    SizedBox(width:8.r,),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(GetStorage().read(AppConstant.userName)??"",
+                            style:bodyboldStyle.copyWith(color:Colors.white,height: 1.h,fontSize: 15.5.r),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                          Text(
+                            loginController.current_address.value.toString().isNotEmpty?loginController.current_address.value.toString():"Wait loading...",
+                            style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.white),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
            automaticallyImplyLeading: false,
             actions: [
               IconButton(onPressed: (){
-                Get.to(()=>AllNotifications());
-              }, icon: Icon(Icons.notification_add,color: Color(0xffffffff),size: 28.r,)),
+                Get.to(()=> const AllNotifications());
+              }, icon: Icon(Icons.notification_add,color: const Color(0xffffffff),size: 25.r,)),
               SizedBox(width: 10.w,),
               IconButton(onPressed: (){
                AlertLogout();
-              }, icon:Icon(Icons.power_settings_new_outlined,size: 28.r,color: Colors.red,)),
+              }, icon:Icon(Icons.power_settings_new_outlined,size: 25.r,color: Colors.red,)),
               SizedBox(width: 10.w,),
             ],
           )  ,
@@ -155,35 +128,35 @@ class _DashbordState extends State<Dashbord> {
           iconSize: 18.r,
           containerHeight: 40.r,
           itemCornerRadius: 24.r,
-          animationDuration: Duration(microseconds: 100),
+          animationDuration: const Duration(microseconds: 100),
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           curve: Curves.easeIn,
           onItemSelected: (index) => setState(() => _currentIndex = index),
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(
-              icon: Icon(Icons.home,),
-              title: Text('Home'),
-              activeColor: Color(0xff049486),
+              icon: const Icon(Icons.home,),
+              title: const Text('Home'),
+              activeColor: const Color(0xff049486),
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.book_online),
-              title: Text('Booking'),
-              activeColor: Color(0xff049486),
+              icon: const Icon(Icons.book_online),
+              title: const Text('Booking'),
+              activeColor: const Color(0xff049486),
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.help),
-              title: Text(
+              icon: const Icon(Icons.help),
+              title: const Text(
                 'Help',
               ),
-              activeColor: Color(0xff049486),
+              activeColor: const Color(0xff049486),
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
-              activeColor: Color(0xff049486),
+              icon: const Icon(Icons.person),
+              title: const Text('Profile'),
+              activeColor: const Color(0xff049486),
               textAlign: TextAlign.center,
             ),
           ],
@@ -200,7 +173,7 @@ class _DashbordState extends State<Dashbord> {
       setState(() {
         _currentIndex = 0;
         DateTime now = DateTime.now();
-        if (currentBackPressTime == null || now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+        if (currentBackPressTime == null || now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
           currentBackPressTime = now;
           ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -283,25 +256,25 @@ class _DashbordState extends State<Dashbord> {
                             //   ),
                             // ),
                             MaterialButton(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
                                 elevation: 5.0,
                                 minWidth: 120.w,
                                 height: 40.h,
-                                color: Color(0xFF25A48B),
-                                child:  Text('Cancel',
-                                    style: new TextStyle(fontSize: 16.0, color: Colors.white)),
+                                color: const Color(0xFF25A48B),
+                                child:  const Text('Cancel',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.white)),
                                 onPressed: () {
                                   Get.back();
                                 }),
-                            Spacer(),
+                            const Spacer(),
                             MaterialButton(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
                                 elevation: 5.0,
                                 minWidth: 120.w,
                                 height: 40.h,
-                                color: Color(0xFFC90032),
-                                child:  Text('Ok',
-                                    style: new TextStyle(fontSize: 16.0, color: Colors.white)),
+                                color: const Color(0xFFC90032),
+                                child:  const Text('Ok',
+                                    style: TextStyle(fontSize: 16.0, color: Colors.white)),
                                 onPressed: () {
                                  controller.logout();
                                 }),
@@ -350,7 +323,7 @@ showAlertDialog() {
                       ),
                       child: Center(child: Text("Cancel",style: bodybold2Style.copyWith(color: Colors.white,decoration: TextDecoration.none),)),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       height: 40.h,
                       width: 120.w,

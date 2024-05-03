@@ -41,10 +41,10 @@ class Data {
   String? email;
   String? mobile;
   String? address;
-  dynamic? shortDescription;
-  dynamic? instaLink;
-  dynamic? twitterLink;
-  dynamic? fbLink;
+  dynamic shortDescription;
+  dynamic instaLink;
+  dynamic twitterLink;
+  dynamic fbLink;
 
   Data({
     this.title,

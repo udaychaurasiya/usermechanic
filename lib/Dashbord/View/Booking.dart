@@ -9,8 +9,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
 import 'package:usermechanic/Dashbord/View/BookingServiceDetails.dart';
-import 'package:usermechanic/Widget/LodingWidget.dart';
 import 'package:usermechanic/Widget/styles.dart';
+import 'package:usermechanic/utils/data_not_found.dart';
 
 class Booking extends StatefulWidget {
   const Booking({Key? key}) : super(key: key);
@@ -35,8 +35,7 @@ class _BookingState extends State<Booking> {
   }
 
   Widget build(BuildContext context) {
-    double height, width;
-      height = MediaQuery.of(context).size.height;
+    double width;
       width = MediaQuery.of(context).size.width;
     void _selectOption(option) {
       print('Selected: $option');
@@ -669,10 +668,15 @@ class _BookingState extends State<Booking> {
                   )
                           : Container(
                             alignment: Alignment.center,
+                            padding: EdgeInsets.only(top: Get.height/4.4.h),
+                            child: const DataNotFound(),
+                          )
+                          /*Container(
+                            alignment: Alignment.center,
                               padding: EdgeInsets.only(top: 50.0.h),
                               child: const Image(
                                   image: AssetImage("assets/images/norecord.png")),
-                            ),
+                          )*/,
                       ),
                 ),
               ],

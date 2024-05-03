@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,20 +10,19 @@ import 'package:usermechanic/AppConstant/APIConstant.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
 import 'package:usermechanic/Dashbord/View/HomePage/MapView.dart';
 import 'package:usermechanic/Dashbord/View/HomePage/Rating.dart';
-import 'package:usermechanic/Dashbord/View/MechanicBook.dart';
-import 'package:usermechanic/Widget/PhotoViews.dart';
+import 'package:usermechanic/Widget/coustom_Dailog.dart';
 import 'package:usermechanic/Widget/styles.dart';
 
-import '../../Widget/coustom_Dailog.dart';
-class ShopListDeatils extends StatefulWidget {
+
+class ShopListDetails extends StatefulWidget {
   final String id;
-  const ShopListDeatils( this.id,{Key? key}) : super(key: key);
+  const ShopListDetails( this.id,{Key? key}) : super(key: key);
 
   @override
-  State<ShopListDeatils> createState() => _ShopListDeatilsState();
+  State<ShopListDetails> createState() => _ShopListDetailsState();
 }
 
-class _ShopListDeatilsState extends State<ShopListDeatils> {
+class _ShopListDetailsState extends State<ShopListDetails> {
   final HomePageController controller=Get.put(HomePageController());
   @override
   void initState() {
@@ -63,8 +64,8 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
       ),*/
         appBar: AppBar(
           elevation: 0.0,
-        backgroundColor: Color(0xff049486),
-        title: Text("Details"),
+        backgroundColor: const Color(0xff049486),
+        title: const Text("Details"),
         leadingWidth: 20.w,
         ),
         body:Obx(()=>controller.shopDetailsModel.value.data!=null
@@ -73,14 +74,14 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
           children: [
             ListView.builder(
                 shrinkWrap: true,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: 1,
                 itemBuilder:
                     (context,index){
                   double km = double.parse(
                       controller.shopDetailsModel.value.data!.distance.toString()) / 1000;
                   launchCaller() async {
-                    final url = "tel:"+controller.shopDetailsModel.value.data!.mobile.toString();
+                    final url = "tel: ${controller.shopDetailsModel.value.data!.mobile}";
                     if (await canLaunch(url)) {
                       await launch(url);
                     } else {
@@ -109,8 +110,8 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                       viewportFraction: 1,
                                       autoPlay: true,
                                       pageSnapping: true,
-                                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                                      autoPlayInterval: Duration(seconds: 3),
+                                      autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                                      autoPlayInterval: const Duration(seconds: 3),
                                       autoPlayCurve: Curves.fastOutSlowIn,
                                     ),
                                     itemBuilder: (ctx, index, realIdx) {
@@ -120,7 +121,7 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                           width: MediaQuery.of(context).size.width,
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(10.r),
-                                              image: DecorationImage(
+                                              image: const DecorationImage(
                                                 image:NetworkImage(
                                                   "https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20200204073706_MT15.jpg",
                                                 ),fit:BoxFit.fill,
@@ -139,7 +140,7 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                                       borderRadius: BorderRadius.circular(20.r),
                                                       color: Colors.black,
                                                     ),
-                                                    child:Text("uday")),
+                                                    child:const Text("uday")),
                                               )
                                             ],
                                           ),
@@ -162,7 +163,7 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                                   Positioned(
                                                       top: 10.h,
                                                       left: 20.w,
-                                                      child: TextButton(onPressed: (){}, child: Icon(Icons.clear,color: Colors.white,))),
+                                                      child: TextButton(onPressed: (){}, child: const Icon(Icons.clear,color: Colors.white,))),
                                                   Container(
                                                     width: 320.w,
                                                     height: 250.h,
@@ -200,7 +201,7 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           SizedBox(height: 15.h,),
-                                          Text(" "+controller.shopDetailsModel.value.data!.shopName.toString(),style:bodyText1Style.copyWith(fontSize: 18.sp,color: Color(
+                                          Text(" "+controller.shopDetailsModel.value.data!.shopName.toString(),style:bodyText1Style.copyWith(fontSize: 18.sp,color: const Color(
                                               0xff0e877f)),maxLines: 2,),
                                           SizedBox(height: 5.h,),
                                           Row(
@@ -214,12 +215,12 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                                 },
                                                 child: Row(
                                                   children: [
-                                                    Icon(Icons.star_rate_outlined,color: Color(0xff049486),size: 14.sp,),
-                                                    Text(controller.shopDetailsModel.value.data!.rating.toString(),style:TextStyle(color: Color(0xff049486),fontSize: 12.sp,fontWeight: FontWeight.bold),),
+                                                    Icon(Icons.star_rate_outlined,color: const Color(0xff049486),size: 14.sp,),
+                                                    Text(controller.shopDetailsModel.value.data!.rating.toString(),style:TextStyle(color: const Color(0xff049486),fontSize: 12.sp,fontWeight: FontWeight.bold),),
                                                   ],
                                                 ),
                                               ),
-                                              Text("   "+controller.shopDetailsModel.value.data!.noRating.toString()+" Review",style: TextStyle(color: Color(
+                                              Text("   "+controller.shopDetailsModel.value.data!.noRating.toString()+" Review",style: TextStyle(color: const Color(
                                                   0xff000000),fontWeight: FontWeight.bold,fontSize: 12.sp),),
                                             ],
                                           ),
@@ -253,18 +254,18 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text("Address:-",style: TextStyle(color: Color(0xff1e7c69),fontWeight: FontWeight.bold,fontSize: 14.sp),),
-                                              Spacer(),
+                                              Text("Address:-",style: TextStyle(color: const Color(0xff1e7c69),fontWeight: FontWeight.bold,fontSize: 14.sp),),
+                                              const Spacer(),
                                               InkWell(onTap:(){
                                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> const MapScreen()));
                                               },child: Container(
-                                                  color: Color(0xffcdeae6),
+                                                  color: const Color(0xffcdeae6),
                                                   padding: EdgeInsets.only(left: 5.w,right: 5.w),
                                                   height: 25.h,
                                                   child: Center(child: Row(
                                                     children: [
-                                                      Text(" Direction ",style: bodyboldStyle.copyWith(color: Color(0xff049486)),),
-                                                      Icon(Icons.directions,color: Color(0xff049486),)
+                                                      Text(" Direction ",style: bodyboldStyle.copyWith(color: const Color(0xff049486)),),
+                                                      const Icon(Icons.directions,color: Color(0xff049486),)
                                                     ],
                                                   )))),
                                             ],
@@ -361,18 +362,18 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                                   children: [
                                                     Row(
                                                       children: [
-                                                        Text("Distance:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Color(0xff1e7c69))),
-                                                        Text(km.toStringAsFixed(2),maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: Color(
+                                                        Text("Distance:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: const Color(0xff1e7c69))),
+                                                        Text(km.toStringAsFixed(2),maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: const Color(
                                                             0xfc090100)),),
-                                                        Text(" Km"),
+                                                        const Text(" Km"),
                                                       ],
                                                     ),
                                                     SizedBox(height:5.h,),
-                                                    Text("Timing:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Color(0xff1e7c69))),
-                                                    controller.shopDetailsModel.value.data!.storeTime!=null? Text(controller.shopDetailsModel.value.data!.storeTime.toString(),maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: Color(
-                                                        0xfc090100)),):Text(""),
+                                                    Text("Timing:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: const Color(0xff1e7c69))),
+                                                    controller.shopDetailsModel.value.data!.storeTime!=null? Text(controller.shopDetailsModel.value.data!.storeTime.toString(),maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: const Color(
+                                                        0xfc090100)),):const Text(""),
                                                     SizedBox(height: 5.h,),
-                                                    Text("Note :-",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Color(0xff1e7c69)))
+                                                    Text("Note :-",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: const Color(0xff1e7c69)))
                                                   ],
                                                 ),
                                               ),
@@ -384,26 +385,26 @@ class _ShopListDeatilsState extends State<ShopListDeatils> {
                                                   children: [
                                                     Row(
                                                       children: [
-                                                        Text("Shop:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Color(0xff1e7c69))),
-                                                        Text(controller.shopDetailsModel.value.data!.shopOpen=="1"?"Open":controller.shopDetailsModel.value.data!.shopOpen=="2"?"Close":"",maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: Color(
+                                                        Text("Shop:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: const Color(0xff1e7c69))),
+                                                        Text(controller.shopDetailsModel.value.data!.shopOpen=="1"?"Open":controller.shopDetailsModel.value.data!.shopOpen=="2"?"Close":"",maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: const Color(
                                                             0xfc090100)),)
                                                       ],
                                                     ),
                                                     SizedBox(height:5.h,),
                                                     Row(
                                                       children: [
-                                                        Text("Road Service:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Color(0xff1e7c69))),
-                                                        Text(controller.shopDetailsModel.value.data!.isOnRoadService=="0"?"No":controller.shopDetailsModel.value.data!.shopOpen=="1"?"Yes":"",maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: Color(
+                                                        Text("Road Service:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: const Color(0xff1e7c69))),
+                                                        Text(controller.shopDetailsModel.value.data!.isOnRoadService=="0"?"No":controller.shopDetailsModel.value.data!.shopOpen=="1"?"Yes":"",maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,color: const Color(
                                                             0xfc090100)),)
                                                       ],
                                                     ),
                                                     SizedBox(height:5.h,),
-                                                    Text("Contact Number:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Color(0xff1e7c69))),
+                                                    Text("Contact Number:- ",style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight: FontWeight.bold,color: const Color(0xff1e7c69))),
                                                     InkWell(onTap:launchCaller,
                                                       child: Row(
                                                         children: [
                                                           Icon(Icons.call,size: 18.sp,color: Colors.teal,),
-                                                          Text(" "+controller.shopDetailsModel.value.data!.mobile.toString(),maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight:FontWeight.bold,color: Color(
+                                                          Text(" "+controller.shopDetailsModel.value.data!.mobile.toString(),maxLines:1,style: smallTextStyle.copyWith(fontSize: 14.sp,fontWeight:FontWeight.bold,color: const Color(
                                                               0xfc090100)),),
                                                         ],
                                                       ),

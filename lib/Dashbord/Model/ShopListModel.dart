@@ -36,7 +36,7 @@ class ShopListModel {
     "message": message,
     "limit": limit,
     "page": page,
-    "Data": List<dynamic>.from(data!.map((x) => x.toJson())),
+    "Data": List<dynamic>.from(data.map((x) => x.toJson())),
   };
 }
 
@@ -75,7 +75,7 @@ class Datum {
   String? regBy;
   String? status;
   DateTime? addDate;
-  dynamic? categoryTitle;
+  dynamic categoryTitle;
   String? stateTitle;
   String? cityName;
   String? selectVehicle;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class Button3 extends StatelessWidget {
   final VoidCallback onPress;
   final String text;
@@ -7,11 +7,11 @@ class Button3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: new Text("Alert!!"),
-      content: new Text("You are awesome!"),
+      title: const Text("Alert!!"),
+      content: const Text("You are awesome!"),
       actions: <Widget>[
          TextButton(
-          child: new Text("OK"),
+          child: const Text("OK"),
           onPressed: () {
             Navigator.of(context).pop();
           },

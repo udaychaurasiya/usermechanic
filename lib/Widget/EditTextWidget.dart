@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:usermechanic/Widget/TextStyle.dart';
 import 'package:usermechanic/Widget/styles.dart';
+
 class EditTextWidget extends StatelessWidget {
   final TextEditingController ?controller;
   final String? labelText;
@@ -10,7 +10,7 @@ class EditTextWidget extends StatelessWidget {
   final int ?length;
   final bool ?isRead;
   const EditTextWidget({Key? key,  this.controller, this.validator,
-    this.type=TextInputType.text, this.length=null, this.isRead=false, required this.labelText,}) : super(key: key);
+    this.type=TextInputType.text, this.length, this.isRead=false, required this.labelText,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +19,26 @@ class EditTextWidget extends StatelessWidget {
 
         readOnly: isRead!,
         decoration:  InputDecoration(
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
           ),
-          errorBorder:OutlineInputBorder(
+          errorBorder:const OutlineInputBorder(
             borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
           ),
-          border:OutlineInputBorder(
+          border:const OutlineInputBorder(
             borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
           ),
-          focusedErrorBorder:OutlineInputBorder(
+          focusedErrorBorder:const OutlineInputBorder(
             borderSide: BorderSide(width:.5,color: Color(0xffc2bfbf)),
           ),
           isDense: true,
-          counter: Offstage(),
+          counter: const Offstage(),
           labelText: labelText,
-          labelStyle: robotoRegular.copyWith(color: Color(0xff049486)),
-          contentPadding:EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          labelStyle: robotoRegular.copyWith(color: const Color(0xff049486)),
+          contentPadding:const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         ),
         keyboardType: type,
         validator:validator ,

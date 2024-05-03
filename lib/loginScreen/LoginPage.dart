@@ -1,36 +1,32 @@
-import 'dart:ui';
+// ignore_for_file: unnecessary_null_comparison
 
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
+import 'package:usermechanic/AppConstant/APIConstant.dart';
 import 'package:usermechanic/Widget/styles.dart';
+import 'package:usermechanic/auth/FirebaseService.dart';
 import 'package:usermechanic/auth/logincontroller.dart';
 import 'package:usermechanic/controller/notificationService.dart';
 import 'package:usermechanic/utils/CircularButton.dart';
 import 'package:usermechanic/utils/all_image.dart';
 import 'package:usermechanic/utils/custom_snackbar.dart';
-import '../AppConstant/APIConstant.dart';
-import '../Widget/TextStyle.dart';
-import '../auth/FirebaseService.dart';
-import '../utils/dimentions.dart';
+import 'package:usermechanic/utils/dimentions.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 NotificationServices notificationServices = NotificationServices();
 class _LoginPageState extends State<LoginPage> {
   final LoginController controller = Get.put(LoginController());
-  final HomePageController _controller=Get.put(HomePageController());
   final _formKey = GlobalKey<FormState>();
 
   String? deviceId;
@@ -44,8 +40,7 @@ class _LoginPageState extends State<LoginPage> {
       if (kDebugMode)
       {
         controller.FCM_TOKEN.value=value;
-        print("wdjkniuhfe"+value);
-        print( controller.FCM_TOKEN.value+"wknihe");
+        print( "FCM Token ==========>>>>>>>>>>>> \n${controller.FCM_TOKEN.value}");
       }
 
     });
@@ -82,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 5.0.h),
             Center(child: Text(
               "you'll receive 4 digit code to verify next",
-              style: smallTextStyle.copyWith(fontSize:Dimensions.fontSizeLarge, color: Colors.black),
+              style: smallTextStyle.copyWith(fontSize: Dimensions.fontSizeLarge, color: Colors.black),
             )),
             SizedBox(
               height: 50.0.h
@@ -114,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 ),
                  SizedBox(
-                  width: 8,
+                  width: 8.r,
                 ),
                 Expanded(
                     flex: 5,
@@ -167,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                          // Get.to(()=>OtpVerifyScreen(id: id, otp: otp))
                         }
 
-                        print(SignIn+"kdjkjbhf");
+                        print("${SignIn}kdjkjbhf");
 
                       },
                     ),

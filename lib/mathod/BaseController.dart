@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:usermechanic/Widget/styles.dart';
 import 'package:usermechanic/mathod/App_exception.dart';
 import 'package:usermechanic/mathod/dailoghelper.dart';
+
+
 class BaseController {
   void handleError(error)
   {

@@ -1,11 +1,13 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:usermechanic/AppConstant/APIConstant.dart';
 import 'package:usermechanic/Dashbord/Controller/dashbordcontroller.dart';
 import 'package:usermechanic/Widget/styles.dart';
+
 class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
 
@@ -14,15 +16,15 @@ class ContactUs extends StatefulWidget {
 }
   class _ContactUsState extends State<ContactUs> {
    HomePageController controller=Get.put(HomePageController());
-   _InstagramURLApp() async {
-     final url ="https://www.instagram.com/er.uday_chaurasiya143/";
+   _instagramURLApp() async {
+     const url ="https://www.instagram.com/er.uday_chaurasiya143/";
      if (await canLaunch(url)) {
        await launch(url, forceSafariVC: true, forceWebView: false);
      } else {
        throw 'Could not launch $url';
      }
    }
-   _WebsiteLink() async {
+   _websiteLink() async {
      final url =controller.contactUs.value.data!.websiteLink.toString();
      if (await canLaunch(url)) {
        await launch(url, forceSafariVC: true, forceWebView: false);
@@ -147,15 +149,15 @@ class ContactUs extends StatefulWidget {
                                Container(
                                    height:50.r,
                                    width: 50.r,
-                                   child: IconButton(onPressed: _InstagramURLApp, icon: Image.asset("assets/images/T.png",height: 50.r,width: 50.r,fit:BoxFit.fill,))),
+                                   child: IconButton(onPressed: _instagramURLApp, icon: Image.asset("assets/images/T.png",height: 50.r,width: 50.r,fit:BoxFit.fill,))),
                                Container(
                                    height:50.r,
                                    width: 50.r,
-                                   child: IconButton(onPressed: _InstagramURLApp, icon: Image.asset("assets/images/I.png",height: 50.r,width: 50.r,fit:BoxFit.fill))),
+                                   child: IconButton(onPressed: _instagramURLApp, icon: Image.asset("assets/images/I.png",height: 50.r,width: 50.r,fit:BoxFit.fill))),
                                Container(
                                    height:50.r,
                                    width: 50.r,
-                                   child: IconButton(onPressed: _InstagramURLApp, icon: Image.asset("assets/images/F.png",height: 50.r,width: 50.r,fit:BoxFit.fill))),
+                                   child: IconButton(onPressed: _instagramURLApp, icon: Image.asset("assets/images/F.png",height: 50.r,width: 50.r,fit:BoxFit.fill))),
                              ],
                            ),
                            SizedBox(height: 30.h,),
@@ -164,7 +166,7 @@ class ContactUs extends StatefulWidget {
                              mainAxisAlignment: MainAxisAlignment.center,
                              children: [
                                Text("WebSite:-",style:smallTextStyle.copyWith(color: Colors.black,fontSize: 17.sp,),textAlign: TextAlign.center,),
-                               InkWell(onTap:_WebsiteLink,child: Text(controller.contactUs.value.data!.websiteLink.toString(),style: TextStyle(color: Colors.white,fontSize:17.sp,decoration: TextDecoration.underline),))
+                               InkWell(onTap:_websiteLink,child: Text(controller.contactUs.value.data!.websiteLink.toString(),style: TextStyle(color: Colors.white,fontSize:17.sp,decoration: TextDecoration.underline),))
                              ],
                            )
                            // ListTileTheme(
@@ -172,7 +174,7 @@ class ContactUs extends StatefulWidget {
                            //   dense: true,
                            //   child: ListTile(
                            //       leading: Text("WebSite:-",style:smallTextStyle.copyWith(color: Colors.black,fontSize: 17.sp),),
-                           //       title:InkWell(onTap:_WebsiteLink,child: Text(controller.contactUs.value.data!.websiteLink.toString(),style: TextStyle(color: Colors.white,fontSize:17.sp,decoration: TextDecoration.underline),))
+                           //       title:InkWell(onTap:_websiteLink,child: Text(controller.contactUs.value.data!.websiteLink.toString(),style: TextStyle(color: Colors.white,fontSize:17.sp,decoration: TextDecoration.underline),))
                            //
                            //   ),
                            // ),
